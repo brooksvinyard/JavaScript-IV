@@ -45,7 +45,9 @@ class Instructor extends Person {
         return `Today we are learning about ${subject}.`;
     }
     grade(student, subject) {
-        return `${student.name} receives a perfect score on ${subject}.`; //{student.name} receives a perfect score on {subject}
+        // return `${student.name} receives a perfect score on ${subject}.`; //Original working code before stretch
+        student.grade = Math.floor(Math.random() * Math.floor(100));
+        return `${student.name} receives a ${student.grade} on ${subject}.`
     }
 }
 
@@ -68,6 +70,7 @@ class Student extends Person {
         this.previousBackground = studentAttributes.previousBackground;
         this.className = studentAttributes.className;
         this.favSubjects = studentAttributes.favSubjects;
+        this.grade = studentAttributes.grade;
     }
     listsSubjects() {
         return `${this.favSubjects}`;
@@ -77,6 +80,13 @@ class Student extends Person {
     }
     sprintChallenge(subject) {
         return `${this.name} has begun sprint challenge on ${subject}`;
+    }
+    graduate() {
+        if (this.grade >= 70)
+        {
+            return `Congratulations ${this.name} you may now graduate from ${this.className}!`;
+        }
+        return `${this.name} you must keep studying! You only have a ${this.grade}!`;
     }
 }
 
@@ -124,7 +134,8 @@ const jeff = new Student({
     gender: 'male',
     previousBackground: 'Lawyer',
     className: 'WEB17',
-    favSubjects: [`Who Indeed: A Critical Analysis of Television's Who's The Boss?`, `Conspiracy Theories in U.S. History`, `History of Ice Cream`]
+    favSubjects: [`Who Indeed: A Critical Analysis of Television's Who's The Boss?`, `Conspiracy Theories in U.S. History`, `History of Ice Cream`],
+    grade: 71
 });
 
 const craig = new ProjectManager({
@@ -160,3 +171,14 @@ console.log(craig.demo("Political Science"));
 console.log(craig.grade(jeff, "Sailing"));
 console.log(craig.standUp(jeff, "Sailing"));
 console.log(craig.debugsCode(jeff, "Time Travel"));
+
+// Stretch Problem
+console.log("Stretch Problems");
+jeff.grade = 14;
+console.log(jeff.graduate());
+
+while (jeff.grade < 70) {
+    console.log(craig.grade(jeff, "HTML"));
+}
+
+console.log(jeff.graduate());
