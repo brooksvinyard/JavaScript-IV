@@ -11,9 +11,9 @@
 class Person {
     constructor(personAttributes) {
         this.name = personAttributes.name;
-        this.age = personAttributes.name;
-        this.location = personAttributes.name;
-        this.gender = personAttributes.name;
+        this.age = personAttributes.age;
+        this.location = personAttributes.location;
+        this.gender = personAttributes.gender;
     }
     speak() {
         return `Hello my name is ${this.name}, I am from ${this.location}.`;
@@ -34,7 +34,20 @@ class Person {
 //         demo receives a subject string as an argument and logs out the phrase 'Today we are learning about {subject}' where subject is the param passed in.
 //         grade receives a student object and a subject string as arguments and logs out '{student.name} receives a perfect score on {subject}'
 
-
+class Instructor extends Person {
+    constructor(instructorAttributes) {
+        super(instructorAttributes);
+        this.specialty = instructorAttributes.specialty;
+        this.favLanguage = instructorAttributes.favLanguage;
+        this.catchPhrase = instructorAttributes.catchPhrase;
+    }
+    demo(subject) {
+        return `Today we are learning about ${subject}.`;
+    }
+    grade(student, subject) {
+        return `${student.name} receives a perfect score on ${subject}.`; //{student.name} receives a perfect score on {subject}
+    }
+}
 
 // Student
 
@@ -49,7 +62,23 @@ class Person {
 //         PRAssignment a method that receives a subject as an argument and logs out that the student.name has submitted a PR for {subject}
 //         sprintChallenge similar to PRAssignment but logs out student.name has begun sprint challenge on {subject}
 
-
+class Student extends Person {
+    constructor(studentAttributes) {
+        super(studentAttributes);
+        this.previousBackground = studentAttributes.previousBackground;
+        this.className = studentAttributes.className;
+        this.favSubjects = studentAttributes.favSubjects;
+    }
+    listsSubjects() {
+        return `${student.favSubjects}`;
+    }
+    PRAssignment(subject) {
+        return `${this.name} has submitted a PR for ${subject}`;
+    }
+    sprintChallenge(subject) {
+        return `${this.name} has begun sprint challenge on ${subject}`;
+    }
+}
 
 // Project Mananger
 
@@ -61,3 +90,34 @@ class Person {
 //     ProjectManangers have the following Methods:
 //         standUp a method that takes in a slack channel and logs `{name} announces to {channel}, @channel standy times!​​​​​
 //         debugsCode a method that takes in a student object and a subject and logs out {name} debugs {student.name}'s code on {subject}
+
+class ProjectManagers extends Instructor {
+    constructor(projectManagerAttributes) {
+        super(projectManagerAttributes);
+        this.gradClassName = projectManagerAttributes.gradClassName;
+        this.favInstructor = projectManagerAttributes.favInstructor;
+    }
+    standUp() {
+        return `${this.name} announces to {channel}, @channel standy times!​​​​​`;
+    }
+    debugsCode(student, subject) {
+        return `${this.name} debugs ${student.name}'s code on ${subject}`;
+    }
+}
+
+
+
+const fred = new Instructor({
+    name: 'Fred',
+    location: 'Bedrock',
+    age: 37,
+    gender: 'male',
+    favLanguage: 'JavaScript',
+    specialty: 'Front-end',
+    catchPhrase: `Don't forget the homies`
+  });
+
+
+
+console.log(fred.speak());
+  
