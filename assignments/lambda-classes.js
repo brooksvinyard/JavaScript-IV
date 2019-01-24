@@ -70,7 +70,7 @@ class Student extends Person {
         this.favSubjects = studentAttributes.favSubjects;
     }
     listsSubjects() {
-        return `${student.favSubjects}`;
+        return `${this.favSubjects}`;
     }
     PRAssignment(subject) {
         return `${this.name} has submitted a PR for ${subject}`;
@@ -91,7 +91,7 @@ class Student extends Person {
 //         standUp a method that takes in a slack channel and logs `{name} announces to {channel}, @channel standy times!​​​​​
 //         debugsCode a method that takes in a student object and a subject and logs out {name} debugs {student.name}'s code on {subject}
 
-class ProjectManagers extends Instructor {
+class ProjectManager extends Instructor {
     constructor(projectManagerAttributes) {
         super(projectManagerAttributes);
         this.gradClassName = projectManagerAttributes.gradClassName;
@@ -115,9 +115,48 @@ const fred = new Instructor({
     favLanguage: 'JavaScript',
     specialty: 'Front-end',
     catchPhrase: `Don't forget the homies`
-  });
+});
+
+const jeff = new Student({
+    name: 'Jeff Winger',
+    location: 'Greendale',
+    age: 42,
+    gender: 'male',
+    previousBackground: 'Lawyer',
+    className: 'WEB17',
+    favSubjects: [`Who Indeed: A Critical Analysis of Television's Who's The Boss?`, `Conspiracy Theories in U.S. History`, `History of Ice Cream`]
+});
+
+const craig = new ProjectManager({
+    name: 'Craig Pelton',
+    location: 'Denver',
+    age: 44,
+    gender: 'male',
+    favLanguage: 'English',
+    specialty: 'Administrative',
+    catchPhrase: `Dean dean dean dean`,
+    gradClassName: 'WEB17',
+    favInstructor: 'Josh'
+});
 
 
-
+//Testing Instructor Class
+console.log("Testing Instructor Class");
 console.log(fred.speak());
-  
+console.log(fred.demo("CSS"));
+console.log(fred.grade(jeff, "HTML"));
+
+//Testing Student Class
+console.log("Testing Student Class");
+console.log(jeff.speak());
+console.log(jeff.listsSubjects());
+console.log(jeff.PRAssignment("Theoretical Phys Ed"));
+console.log(jeff.sprintChallenge("Theoretical Phys Ed"));
+
+//Testing Project Manager Class
+console.log("Testing Project Manager Class");
+console.log(craig.speak());
+console.log(craig.demo("Political Science"));
+console.log(craig.grade(jeff, "Sailing"));
+console.log(craig.standUp(jeff, "Sailing"));
+console.log(craig.debugsCode(jeff, "Time Travel"));
